@@ -52,36 +52,23 @@
                         </div>
                         <ul class="nav nav-pills nav-stacked main-menu">
                             <li class="nav-header">Main</li>
-                            <li>
-                                <a class="ajax-link" href="index.html"><i class="glyphicon glyphicon-home"></i><span> Dashboard</span></a>
+                            <li class="@( ViewContext.RouteData.Values["controller"].ToString().Equals("Dashboard") ? "active" : "" )">
+                                <a class="ajax-link" href="~/Dashboard"><i class="glyphicon glyphicon-home"></i><span> Dashboard</span></a>
                             </li>
-                            <li>
-                                <a class="ajax-link" href="ui.html"><i class="glyphicon glyphicon-eye-open"></i><span> Stok Barang</span></a>
+                            <li class="@( ViewContext.RouteData.Values["controller"].ToString().Equals("Stock") ? "active" : "" )">
+                                <a class="ajax-link" href="~/Stock"><i class="glyphicon glyphicon-eye-open"></i><span> Stok Barang</span></a>
                             </li>
-                            <li>
-                                <a class="ajax-link" href="chart.html"><i class="glyphicon glyphicon-list-alt"></i><span> Supplier</span></a>
+                            <li class="@( ViewContext.RouteData.Values["controller"].ToString().Equals("Supplier") ? "active" : "" )">
+                                <a class="ajax-link" href="~/Supplier"><i class="glyphicon glyphicon-list-alt"></i><span> Supplier</span></a>
                             </li>
-                            <li>
-                                <a class="ajax-link" href="typography.html"><i class="glyphicon glyphicon-font"></i><span> Konsultasi</span></a>
-                            </li>
-                            <li>
-                                <a class="ajax-link" href="gallery.html"><i class="glyphicon glyphicon-picture"></i><span> Rekomendasi</span></a>
+                            <li class="@( ViewContext.RouteData.Values["controller"].ToString().Equals("Consultation") ? "active" : "" )">
+                                <a class="ajax-link" href="~/Consultation"><i class="glyphicon glyphicon-font"></i><span> Konsultasi</span></a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div id="content" class="col-sm-10 col-md-10">
-                 <div>
-                     <ul class="breadcrumb">
-                         <li>
-                            <a href="#">Home</a>
-                         </li>
-                         <li>
-                            <a href="#">Tables</a>
-                         </li>
-                        </ul>
-                 </div>
                     @RenderBody()
                  <hr />
                  <footer>
