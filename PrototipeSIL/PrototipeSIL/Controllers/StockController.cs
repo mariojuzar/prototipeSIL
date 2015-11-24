@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PrototipeSIL.DAL;
+using PrototipeSIL.Models;
 
 namespace PrototipeSIL.Controllers
 {
+    [MyAuthorize]
     public class StockController : Controller
     {
         SILDBEntities db = new SILDBEntities();
