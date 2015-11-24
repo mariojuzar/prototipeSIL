@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SILDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Barang">
+          <Key>
+            <PropertyRef Name="IDBarang" />
+          </Key>
+          <Property Name="IDBarang" Type="int" Nullable="false" />
+          <Property Name="NamaBarang" Type="nvarchar" MaxLength="50" />
+          <Property Name="KategoriBarang" Type="nvarchar" MaxLength="50" />
+          <Property Name="HargaBeli" Type="int" Nullable="false" />
+          <Property Name="HargaJual" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BarangSupplier">
+          <Key>
+            <PropertyRef Name="IDBarangSupplier" />
+          </Key>
+          <Property Name="IDBarangSupplier" Type="int" Nullable="false" />
+          <Property Name="IDSupplier" Type="int" Nullable="false" />
+          <Property Name="IDBarang" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="IDStock" />
+          </Key>
+          <Property Name="IDStock" Type="int" Nullable="false" />
+          <Property Name="IDBarang" Type="int" />
+          <Property Name="NamaBarang" Type="nvarchar" MaxLength="50" />
+          <Property Name="KategoriBarang" Type="nvarchar" MaxLength="50" />
+          <Property Name="JumlahDiSupermarket" Type="int" Nullable="false" />
+          <Property Name="JumlahDiGudang" Type="int" Nullable="false" />
+          <Property Name="Terjual" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="IDSupplier" />
+          </Key>
+          <Property Name="IDSupplier" Type="int" Nullable="false" />
+          <Property Name="NamaSupplier" Type="nvarchar" MaxLength="50" />
+          <Property Name="MinPesan" Type="int" Nullable="false" />
+          <Property Name="LamaPengiriman" Type="int" Nullable="false" />
+          <Property Name="BiayaPengiriman" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IDUser" />
+          </Key>
+          <Property Name="IDUser" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BarangSupplier_Barang">
+          <End Role="Barang" Type="Self.Barang" Multiplicity="1" />
+          <End Role="BarangSupplier" Type="Self.BarangSupplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Barang">
+              <PropertyRef Name="IDBarang" />
+            </Principal>
+            <Dependent Role="BarangSupplier">
+              <PropertyRef Name="IDBarang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BarangSupplier_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="BarangSupplier" Type="Self.BarangSupplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="IDSupplier" />
+            </Principal>
+            <Dependent Role="BarangSupplier">
+              <PropertyRef Name="IDSupplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Barang">
+          <End Role="Barang" Type="Self.Barang" Multiplicity="0..1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Barang">
+              <PropertyRef Name="IDBarang" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="IDBarang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SILDBModelStoreContainer">
+          <EntitySet Name="Barang" EntityType="Self.Barang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BarangSupplier" EntityType="Self.BarangSupplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BarangSupplier_Barang" Association="Self.FK_BarangSupplier_Barang">
+            <End Role="Barang" EntitySet="Barang" />
+            <End Role="BarangSupplier" EntitySet="BarangSupplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BarangSupplier_Supplier" Association="Self.FK_BarangSupplier_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="BarangSupplier" EntitySet="BarangSupplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Barang" Association="Self.FK_Stock_Barang">
+            <End Role="Barang" EntitySet="Barang" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SILDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Barang">
+          <Key>
+            <PropertyRef Name="IDBarang" />
+          </Key>
+          <Property Name="IDBarang" Type="Int32" Nullable="false" />
+          <Property Name="NamaBarang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KategoriBarang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HargaBeli" Type="Int32" Nullable="false" />
+          <Property Name="HargaJual" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BarangSupplier" Relationship="Self.FK_BarangSupplier_Barang" FromRole="Barang" ToRole="BarangSupplier" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_Stock_Barang" FromRole="Barang" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="BarangSupplier">
+          <Key>
+            <PropertyRef Name="IDBarangSupplier" />
+          </Key>
+          <Property Name="IDBarangSupplier" Type="Int32" Nullable="false" />
+          <Property Name="IDSupplier" Type="Int32" Nullable="false" />
+          <Property Name="IDBarang" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Barang" Relationship="Self.FK_BarangSupplier_Barang" FromRole="BarangSupplier" ToRole="Barang" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_BarangSupplier_Supplier" FromRole="BarangSupplier" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="IDStock" />
+          </Key>
+          <Property Name="IDStock" Type="Int32" Nullable="false" />
+          <Property Name="IDBarang" Type="Int32" />
+          <Property Name="NamaBarang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KategoriBarang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JumlahDiSupermarket" Type="Int32" Nullable="false" />
+          <Property Name="JumlahDiGudang" Type="Int32" Nullable="false" />
+          <Property Name="Terjual" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Barang" Relationship="Self.FK_Stock_Barang" FromRole="Stock" ToRole="Barang" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="IDSupplier" />
+          </Key>
+          <Property Name="IDSupplier" Type="Int32" Nullable="false" />
+          <Property Name="NamaSupplier" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MinPesan" Type="Int32" Nullable="false" />
+          <Property Name="LamaPengiriman" Type="Int32" Nullable="false" />
+          <Property Name="BiayaPengiriman" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BarangSupplier" Relationship="Self.FK_BarangSupplier_Supplier" FromRole="Supplier" ToRole="BarangSupplier" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IDUser" />
+          </Key>
+          <Property Name="IDUser" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BarangSupplier_Barang">
+          <End Role="Barang" Type="Self.Barang" Multiplicity="1" />
+          <End Role="BarangSupplier" Type="Self.BarangSupplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Barang">
+              <PropertyRef Name="IDBarang" />
+            </Principal>
+            <Dependent Role="BarangSupplier">
+              <PropertyRef Name="IDBarang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Barang">
+          <End Role="Barang" Type="Self.Barang" Multiplicity="0..1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Barang">
+              <PropertyRef Name="IDBarang" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="IDBarang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BarangSupplier_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="BarangSupplier" Type="Self.BarangSupplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="IDSupplier" />
+            </Principal>
+            <Dependent Role="BarangSupplier">
+              <PropertyRef Name="IDSupplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SILDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Barang" EntityType="Self.Barang" />
+          <EntitySet Name="BarangSupplier" EntityType="Self.BarangSupplier" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_BarangSupplier_Barang" Association="Self.FK_BarangSupplier_Barang">
+            <End Role="Barang" EntitySet="Barang" />
+            <End Role="BarangSupplier" EntitySet="BarangSupplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Barang" Association="Self.FK_Stock_Barang">
+            <End Role="Barang" EntitySet="Barang" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BarangSupplier_Supplier" Association="Self.FK_BarangSupplier_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="BarangSupplier" EntitySet="BarangSupplier" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SILDBModelStoreContainer" CdmEntityContainer="SILDBEntities">
+          <EntitySetMapping Name="Barang">
+            <EntityTypeMapping TypeName="SILDBModel.Barang">
+              <MappingFragment StoreEntitySet="Barang">
+                <ScalarProperty Name="IDBarang" ColumnName="IDBarang" />
+                <ScalarProperty Name="NamaBarang" ColumnName="NamaBarang" />
+                <ScalarProperty Name="KategoriBarang" ColumnName="KategoriBarang" />
+                <ScalarProperty Name="HargaBeli" ColumnName="HargaBeli" />
+                <ScalarProperty Name="HargaJual" ColumnName="HargaJual" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BarangSupplier">
+            <EntityTypeMapping TypeName="SILDBModel.BarangSupplier">
+              <MappingFragment StoreEntitySet="BarangSupplier">
+                <ScalarProperty Name="IDBarangSupplier" ColumnName="IDBarangSupplier" />
+                <ScalarProperty Name="IDSupplier" ColumnName="IDSupplier" />
+                <ScalarProperty Name="IDBarang" ColumnName="IDBarang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stock">
+            <EntityTypeMapping TypeName="SILDBModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="IDStock" ColumnName="IDStock" />
+                <ScalarProperty Name="IDBarang" ColumnName="IDBarang" />
+                <ScalarProperty Name="NamaBarang" ColumnName="NamaBarang" />
+                <ScalarProperty Name="KategoriBarang" ColumnName="KategoriBarang" />
+                <ScalarProperty Name="JumlahDiSupermarket" ColumnName="JumlahDiSupermarket" />
+                <ScalarProperty Name="JumlahDiGudang" ColumnName="JumlahDiGudang" />
+                <ScalarProperty Name="Terjual" ColumnName="Terjual" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supplier">
+            <EntityTypeMapping TypeName="SILDBModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="IDSupplier" ColumnName="IDSupplier" />
+                <ScalarProperty Name="NamaSupplier" ColumnName="NamaSupplier" />
+                <ScalarProperty Name="MinPesan" ColumnName="MinPesan" />
+                <ScalarProperty Name="LamaPengiriman" ColumnName="LamaPengiriman" />
+                <ScalarProperty Name="BiayaPengiriman" ColumnName="BiayaPengiriman" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="SILDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
