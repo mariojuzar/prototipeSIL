@@ -37,6 +37,14 @@ namespace PrototipeSIL
                       "~/Content/js/jquery.history.js",
                       "~/Content/js/charisma.js"));
 
+            bundles.Add(new ScriptBundle("~/Script/amchart").Include(
+                        "~/Content/amcharts/amcharts.js",
+                        "~/Content/amcharts/serial.js",
+                        "~/Content/amcharts/pie.js",
+                        "~/Content/amcharts/themes/light.js",
+                        "~/Content/amcharts/themes/patterns.js",
+                        "~/Content/amcharts/themes/chalk.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap-cerulean.min.css",
                       "~/Content/css/charisma-app.css",
