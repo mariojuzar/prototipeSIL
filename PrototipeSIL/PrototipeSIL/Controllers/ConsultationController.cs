@@ -15,5 +15,11 @@ namespace PrototipeSIL.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Pertanyaan1()
+        {
+            return PartialView("_Pertanyaan1");
+        }
     }
 }

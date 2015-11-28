@@ -201,8 +201,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EconomicOrderQuantity.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MyAuthorizeAttribute.cs" />
+    <Compile Include="Models\RekomendasiSuplaiModel.cs" />
+    <Compile Include="Models\SilverMealHeuristic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1638,6 +1641,7 @@
     <Content Include="Views\Stock\Index.cshtml" />
     <Content Include="Views\Supplier\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Consultation\_Pertanyaan1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
