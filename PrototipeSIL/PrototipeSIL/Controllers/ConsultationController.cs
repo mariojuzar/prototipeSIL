@@ -27,5 +27,17 @@ namespace PrototipeSIL.Controllers
         {
             return PartialView("_Pertanyaan2");
         }
+
+        [HttpPost]
+        public ActionResult Pertanyaan3()
+        {
+            return PartialView("_Pertanyaan3");
+        }
+
+        [HttpPost]
+        public ActionResult Pertanyaan4()
+        {
+            return PartialView("_Pertanyaan4");
+        }
     }
 }
