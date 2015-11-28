@@ -30,9 +30,26 @@
         <div class="radio">
             <label><input type="radio" name="optradio">Buruk</label>
         </div>
+        <hr />
+        <p>Bagaimana kondisi ekonomi secara umum?</p>
+        <div class="radio">
+            <label><input type="radio" name="optradio">Baik / Menguat</label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="optradio">Sedang</label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="optradio">Buruk / Melemah </label>
+        </div>
     </div>
     <div class="row">
-        <div class="col-md-9"></div>
+        <div class="col-md-6"></div>
+        <div class="col-md-3">
+            <div class="btn btn-primary btn-lg">
+                <i class="glyphicon glyphicon-chevron-left glyphicon-white"></i>
+                @Ajax.ActionLink("Pertanyaan Sebelumnya", "Pertanyaan1", null, options, htmlAttributes: new { @class = "btn btn-primary" })
+            </div>
+        </div>
         <div class="col-md-3">
             <div class="btn btn-primary btn-lg">
                 @Ajax.ActionLink("Pertanyaan Selanjutnya", "Pertanyaan2", null, options, htmlAttributes: new { @class = "btn btn-primary" })
@@ -41,3 +58,7 @@
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}

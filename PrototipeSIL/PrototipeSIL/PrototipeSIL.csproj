@@ -1642,6 +1642,7 @@
     <Content Include="Views\Supplier\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Consultation\_Pertanyaan1.cshtml" />
+    <Content Include="Views\Consultation\_Pertanyaan2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
