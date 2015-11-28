@@ -1393,9 +1393,6 @@
     <Content Include="Content\js\jquery.noty.js" />
     <Content Include="Content\js\jquery.raty.min.js" />
     <Content Include="Content\js\jquery.uploadify-3.1.min.js" />
-    <Content Include="Content\misc\check-exists.php" />
-    <Content Include="Content\misc\uploadify.php" />
-    <Content Include="Content\misc\uploadify.swf" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
