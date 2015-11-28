@@ -1645,6 +1645,10 @@
     <Content Include="Views\Consultation\_Pertanyaan2.cshtml" />
     <Content Include="Views\Consultation\_Pertanyaan3.cshtml" />
     <Content Include="Views\Consultation\_Pertanyaan4.cshtml" />
+    <Content Include="Views\Consultation\_ShowResultConsultationYes.cshtml" />
+    <Content Include="Views\Consultation\_ShowResultConsultationNo.cshtml" />
+    <Content Include="Views\Consultation\_ShowResultEOQ.cshtml" />
+    <Content Include="Views\Consultation\_ShowResultSMH.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

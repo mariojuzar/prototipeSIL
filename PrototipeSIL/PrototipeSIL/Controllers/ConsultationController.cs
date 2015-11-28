@@ -39,5 +39,31 @@ namespace PrototipeSIL.Controllers
         {
             return PartialView("_Pertanyaan4");
         }
+
+        [HttpPost]
+        public ActionResult ShowResultConsultationYes()
+        {
+            return PartialView("_ShowResultConsultationYes");
+        }
+
+        [HttpPost]
+        public ActionResult ShowResultConsultationNo()
+        {
+            return PartialView("_ShowResultConsultationNo");
+        }
+
+        [HttpPost]
+        public ActionResult ShowResultDSS(String option)
+        {
+            RekomendasiSuplaiModel model = new RekomendasiSuplaiModel();
+            if (option.Equals("EOQ"))
+            {
+                return PartialView("_ShowResultEOQ", model);
+            }
+            else
+            {
+                return PartialView("_ShowResultSMH", model);
+            }
+        }
     }
 }
