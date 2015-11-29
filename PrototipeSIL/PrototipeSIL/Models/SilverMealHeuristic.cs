@@ -27,12 +27,24 @@ namespace PrototipeSIL.Models
                 indeks++;
             }
 
+            count = 0;
             for (int i = 0; i < indeks; i++)
             {
                 jumlah += kebutuhan[i];
+                if (kebutuhan[i] != 0)
+                {
+                    count++;
+                }
             }
-        
-            return jumlah;
+
+            if (count != 0)
+            {
+                return jumlah / count;
+            }
+            else
+            {
+                return jumlah;
+            }
         }
     }
 }
