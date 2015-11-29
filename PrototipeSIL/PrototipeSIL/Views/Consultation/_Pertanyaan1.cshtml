@@ -20,16 +20,14 @@
 </div>
 <div class="box-content" style="padding:40px;">
     <div id="Question">
-        <p>Bagaimana kondisi ekonomi supermarket saat ini?</p>
+        <p>Apakah Anda ingin melakukan suplai atau tidak?</p>
         <div class="radio">
-            <label><input type="radio" name="optradio">Baik</label>
+            <label><input type="radio" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/Pertanyaan2?option=Ya')" checked="checked">Ya</label>
         </div>
         <div class="radio">
-            <label><input type="radio" name="optradio">Sedang</label>
+            <label><input type="radio" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/Pertanyaan2?option=Tidak')">Tidak</label>
         </div>
-        <div class="radio">
-            <label><input type="radio" name="optradio">Buruk</label>
-        </div>
+        <br />
         <br />
         <br />
         <br />
@@ -38,9 +36,13 @@
         <div class="col-md-9"></div>
         <div class="col-md-3">
             <div class="btn btn-primary btn-lg">
-                @Ajax.ActionLink("Pertanyaan Selanjutnya", "Pertanyaan2", null, options, htmlAttributes: new { @class = "btn btn-primary" })
+                @Ajax.ActionLink("Selanjutnya", "Pertanyaan2", new { option = "Ya" }, options, htmlAttributes: new { @class = "btn btn-primary", @Id = "link" })
                 <i class="glyphicon glyphicon-chevron-right glyphicon-white"></i>
             </div>
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}

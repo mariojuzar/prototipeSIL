@@ -26,38 +26,32 @@
 </div>
 <div class="box-content" style="padding:40px;">
     <div id="Question">
-        <p>Apakah saat ini musim hujan?</p>
+        <p>Bagaimana kondisi ekonomi supermarket saat ini?</p>
         <div class="radio">
-            <label><input type="radio" checked="checked" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/Pertanyaan4?option=Ya')">Ya</label>
+            <label><input type="radio" checked="checked" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/CalculateResult?option=Baik')">Baik</label>
         </div>
         <div class="radio">
-            <label><input type="radio" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/Pertanyaan4?option=Tidak')">Tidak</label>
+            <label><input type="radio" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/CalculateResult?option=Sedang')">Sedang</label>
         </div>
-        <br />
-        <br />
+        <div class="radio">
+            <label><input type="radio" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/CalculateResult?option=Buruk')">Buruk</label>
+        </div>
         <br />
         <br />
         <br />
     </div>
     <div class="row">
-        <div class="col-md-6"></div>
+        <div class="col-md-7"></div>
         <div class="col-md-3">
             <div class="btn btn-primary btn-lg">
                 <i class="glyphicon glyphicon-chevron-left glyphicon-white"></i>
-                @Ajax.ActionLink("Sebelumnya", "Pertanyaan2", null, optionsGet, htmlAttributes: new { @class = "btn btn-primary" })
+                @Ajax.ActionLink("Sebelumnya", "Pertanyaan4", null, optionsGet, htmlAttributes: new { @class = "btn btn-primary" })
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="btn btn-primary btn-lg">
-                @Ajax.ActionLink("Selanjutnya", "Pertanyaan4", new { option = "Ya" }, optionsPost, htmlAttributes: new { @class = "btn btn-primary", @Id = "link" })
-                <i class="glyphicon glyphicon-chevron-right glyphicon-white"></i>
+                @Ajax.ActionLink("Selanjutnya", "CalculateResult", new { option = "Baik" }, optionsPost, htmlAttributes: new { @class = "btn btn-primary", @Id = "link" })
             </div>
         </div>
     </div>
 </div>
-
-@section scripts{
-    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-}
-
-

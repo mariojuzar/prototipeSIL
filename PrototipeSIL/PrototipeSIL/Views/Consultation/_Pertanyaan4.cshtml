@@ -1,7 +1,13 @@
 ﻿@{
-    AjaxOptions options = new AjaxOptions
+    AjaxOptions optionsPost = new AjaxOptions
     {
         HttpMethod = "post",
+        UpdateTargetId = "QuestionBox",
+        InsertionMode = InsertionMode.Replace
+    };
+    AjaxOptions optionsGet = new AjaxOptions
+    {
+        HttpMethod = "get",
         UpdateTargetId = "QuestionBox",
         InsertionMode = InsertionMode.Replace
     };
@@ -20,24 +26,27 @@
 </div>
 <div class="box-content" style="padding:40px;">
     <div id="Question">
-        <p>Apakah event paling dekat (dalam waktu 2-3 minggu kedepan)?</p>
+        <p>Apakah event paling dekat (dalam waktu 1-2 minggu kedepan)?</p>
         <div class="radio">
-            <label><input type="radio" name="optradio">bulan puasa</label>
+            <label><input type="radio" checked="checked" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/Pertanyaan5?option=Puasa')">bulan puasa</label>
         </div>
         <div class="radio">
-            <label><input type="radio" name="optradio">lebaran</label>
+            <label><input type="radio" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/Pertanyaan5?option=Lebaran')">lebaran</label>
         </div>
         <div class="radio">
-            <label><input type="radio" name="optradio">idul adha</label>
+            <label><input type="radio" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/Pertanyaan5?option=IdulAdha')">idul adha</label>
         </div>
         <div class="radio">
-            <label><input type="radio" name="optradio">natal</label>
+            <label><input type="radio" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/Pertanyaan5?option=Natal')">natal</label>
         </div>
         <div class="radio">
-            <label><input type="radio" name="optradio">liburan</label>
+            <label><input type="radio" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/Pertanyaan5?option=LiburSekolah')">liburan sekolah</label>
         </div>
         <div class="radio">
-            <label><input type="radio" name="optradio">no event</label>
+            <label><input type="radio" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/Pertanyaan5?option=TahunBaru')">tahun baru</label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/Pertanyaan5?option=NoEvent')">no event</label>
         </div>
     </div>
     <div class="row">
@@ -45,12 +54,13 @@
         <div class="col-md-3">
             <div class="btn btn-primary btn-lg">
                 <i class="glyphicon glyphicon-chevron-left glyphicon-white"></i>
-                @Ajax.ActionLink("Pertanyaan Sebelumnya", "Pertanyaan3", null, options, htmlAttributes: new { @class = "btn btn-primary" })
+                @Ajax.ActionLink("Sebelumnya", "Pertanyaan3", null, optionsGet, htmlAttributes: new { @class = "btn btn-primary" })
             </div>
         </div>
         <div class="col-md-2">
             <div class="btn btn-primary btn-lg">
-                @Ajax.ActionLink("          Selanjutnya", "ShowResultConsultationYes", null, options, htmlAttributes: new { @class = "btn btn-primary" })
+                @Ajax.ActionLink("Selanjutnya", "Pertanyaan5", new { option = "Puasa" }, optionsPost, htmlAttributes: new { @class = "btn btn-primary", @Id = "link" })
+                <i class="glyphicon glyphicon-chevron-right glyphicon-white"></i>
             </div>
         </div>
     </div>

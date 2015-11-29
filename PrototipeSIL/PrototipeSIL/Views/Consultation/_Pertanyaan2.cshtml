@@ -1,7 +1,13 @@
 ﻿@{
-    AjaxOptions options = new AjaxOptions
+    AjaxOptions optionsPost = new AjaxOptions
     {
         HttpMethod = "post",
+        UpdateTargetId = "QuestionBox",
+        InsertionMode = InsertionMode.Replace
+    };
+    AjaxOptions optionsGet = new AjaxOptions
+    {
+        HttpMethod = "get",
         UpdateTargetId = "QuestionBox",
         InsertionMode = InsertionMode.Replace
     };
@@ -22,13 +28,13 @@
     <div id="Question">
         <p>Bagaimana kondisi ekonomi secara umum?</p>
         <div class="radio">
-            <label><input type="radio" name="optradio">Baik / Menguat</label>
+            <label><input type="radio" checked="checked" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/Pertanyaan3?option=Baik')">Baik / Menguat</label>
         </div>
         <div class="radio">
-            <label><input type="radio" name="optradio">Sedang</label>
+            <label><input type="radio" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/Pertanyaan3?option=Sedang')">Sedang</label>
         </div>
         <div class="radio">
-            <label><input type="radio" name="optradio">Buruk / Melemah </label>
+            <label><input type="radio" name="optradio" onclick="document.getElementById('link').setAttribute('href', 'Consultation/Pertanyaan3?option=Buruk')">Buruk / Melemah </label>
         </div>
         <br />
         <br />
@@ -39,12 +45,12 @@
         <div class="col-md-3">
             <div class="btn btn-primary btn-lg">
                 <i class="glyphicon glyphicon-chevron-left glyphicon-white"></i>
-                @Ajax.ActionLink("Pertanyaan Sebelumnya", "Pertanyaan1", null, options, htmlAttributes: new { @class = "btn btn-primary" })
+                @Ajax.ActionLink("Sebelumnya", "Pertanyaan1", null, optionsGet, htmlAttributes: new { @class = "btn btn-primary" })
             </div>
         </div>
         <div class="col-md-3">
             <div class="btn btn-primary btn-lg">
-                @Ajax.ActionLink("Pertanyaan Selanjutnya", "Pertanyaan3", null, options, htmlAttributes: new { @class = "btn btn-primary" })
+                @Ajax.ActionLink("Selanjutnya", "Pertanyaan3", new { option = "Baik" }, optionsPost, htmlAttributes: new { @class = "btn btn-primary", @Id = "link" })
                 <i class="glyphicon glyphicon-chevron-right glyphicon-white"></i>
             </div>
         </div>

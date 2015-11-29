@@ -12,6 +12,7 @@ namespace PrototipeSIL.Controllers
     public class ConsultationController : Controller
     {
         SILDBEntities db = new SILDBEntities();
+        String kondEko, kondSup, even, hujan;
 
         // GET: Consultation
         public ActionResult Index()
@@ -19,28 +20,84 @@ namespace PrototipeSIL.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Pertanyaan1()
         {
             return PartialView("_Pertanyaan1");
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Pertanyaan2()
         {
             return PartialView("_Pertanyaan2");
         }
 
         [HttpPost]
+        public ActionResult Pertanyaan2(String option)
+        {
+            if (option.Equals("Ya"))
+            {
+                return PartialView("_Pertanyaan2");
+            }
+            else
+            {
+                return PartialView("_ShowResultConsultationNo");
+            }
+        }
+
+        [HttpGet]
         public ActionResult Pertanyaan3()
         {
             return PartialView("_Pertanyaan3");
         }
 
         [HttpPost]
+        public ActionResult Pertanyaan3(String option)
+        {
+            kondEko = option;
+            return PartialView("_Pertanyaan3");
+        }
+
+        [HttpGet]
         public ActionResult Pertanyaan4()
         {
             return PartialView("_Pertanyaan4");
+        }
+
+        [HttpPost]
+        public ActionResult Pertanyaan4(String option)
+        {
+            hujan = option;
+            return PartialView("_Pertanyaan4");
+        }
+
+        [HttpGet]
+        public ActionResult Pertanyaan5()
+        {
+            return PartialView("_Pertanyaan5");
+        }
+
+        [HttpPost]
+        public ActionResult Pertanyaan5(String option)
+        {
+            even = option;
+            return PartialView("_Pertanyaan5");
+        }
+
+        [HttpPost]
+        public ActionResult CalculateResult(String option)
+        {
+            kondSup = option;
+            if ((kondEko=="Buruk")&&(hujan=="Ya")&&(even=="NoEven")||
+                (kondEko=="Sedang"&&hujan=="Ya"&&even=="NoEven")||
+                (kondSup=="Baik"&&hujan=="Ya"&&even=="NoEven"))
+            {
+                return ShowResultConsultationNo();
+            }
+            else
+            {
+                return ShowResultConsultationYes();
+            }
         }
 
         [HttpPost]
@@ -56,9 +113,10 @@ namespace PrototipeSIL.Controllers
         }
 
         [HttpPost]
-        public ActionResult ShowResultDSS(String option)
+        public ActionResult ShowResultDSS(String option, int anggaran)
         {
-            List<RekomendasiSuplaiModel> model = new List<RekomendasiSuplaiModel>();
+            RekomendasiSuplaiModel model = new RekomendasiSuplaiModel();
+            model.item = new List<RekomendasiSuplai>();
             
             if (option.Equals("EOQ"))
             {
@@ -80,16 +138,18 @@ namespace PrototipeSIL.Controllers
                                              where d.IDSupplier == barSup.IDSupplier
                                              select d).Single();
 
-                        RekomendasiSuplaiModel item = new RekomendasiSuplaiModel();
+                        RekomendasiSuplai item = new RekomendasiSuplai();
                         item.KodeBarang = barang.IDBarang;
                         item.NamaBarang = barang.NamaBarang;
                         item.NamaSupplier = supplier.NamaSupplier;
                         int D = barang.HargaBeli*(stok.JumlahDiGudang+stok.JumlahDiSupermarket)/1000;
                         item.JumlahPasok = EconomicOrderQuantity.calculateEOQ(D, supplier.BiayaPengiriman, 2)/100;
 
-                        model.Add(item);
+                        model.item.Add(item);
                     }
                 }
+
+                model.anggaranInput = anggaran;
 
                 return PartialView("_ShowResultEOQ", model);
             }
@@ -113,7 +173,7 @@ namespace PrototipeSIL.Controllers
                                              where d.IDSupplier == barSup.IDSupplier
                                              select d).Single();
 
-                        RekomendasiSuplaiModel item = new RekomendasiSuplaiModel();
+                        RekomendasiSuplai item = new RekomendasiSuplai();
                         item.KodeBarang = barang.IDBarang;
                         item.NamaBarang = barang.NamaBarang;
                         item.NamaSupplier = supplier.NamaSupplier;
@@ -138,11 +198,14 @@ namespace PrototipeSIL.Controllers
 
                         if (item.JumlahPasok != 0)
                         {
-                            model.Add(item);
+                            model.item.Add(item);
                         }
+
                     }
                 }
-
+                
+                model.anggaranInput = anggaran;
+                
                 return PartialView("_ShowResultSMH", model);
             }
         }
