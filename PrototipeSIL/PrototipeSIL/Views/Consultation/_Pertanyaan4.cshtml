@@ -20,36 +20,6 @@
 </div>
 <div class="box-content" style="padding:40px;">
     <div id="Question">
-        <p>Bagaimana kondisi ekonomi supermarket saat ini?</p>
-        <div class="radio">
-            <label><input type="radio" name="optradio">Baik</label>
-        </div>
-        <div class="radio">
-            <label><input type="radio" name="optradio">Sedang</label>
-        </div>
-        <div class="radio">
-            <label><input type="radio" name="optradio">Buruk</label>
-        </div>
-        <hr />
-        <p>Bagaimana kondisi ekonomi secara umum?</p>
-        <div class="radio">
-            <label><input type="radio" name="optradio">Baik / Menguat</label>
-        </div>
-        <div class="radio">
-            <label><input type="radio" name="optradio">Sedang</label>
-        </div>
-        <div class="radio">
-            <label><input type="radio" name="optradio">Buruk / Melemah </label>
-        </div>
-        <hr />
-        <p>Apakah saat ini musim hujan?</p>
-        <div class="radio">
-            <label><input type="radio" name="optradio">Ya</label>
-        </div>
-        <div class="radio">
-            <label><input type="radio" name="optradio">Tidak</label>
-        </div>
-        <hr />
         <p>Apakah event paling dekat (dalam waktu 2-3 minggu kedepan)?</p>
         <div class="radio">
             <label><input type="radio" name="optradio">bulan puasa</label>
@@ -71,17 +41,16 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6"></div>
+        <div class="col-md-7"></div>
         <div class="col-md-3">
             <div class="btn btn-primary btn-lg">
                 <i class="glyphicon glyphicon-chevron-left glyphicon-white"></i>
                 @Ajax.ActionLink("Pertanyaan Sebelumnya", "Pertanyaan3", null, options, htmlAttributes: new { @class = "btn btn-primary" })
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="btn btn-primary btn-lg">
-                @Ajax.ActionLink("Pertanyaan Selanjutnya", "Pertanyaan4", null, options, htmlAttributes: new { @class = "btn btn-primary" })
-                <i class="glyphicon glyphicon-chevron-right glyphicon-white"></i>
+                @Ajax.ActionLink("          Selanjutnya", "ShowResultConsultationYes", null, options, htmlAttributes: new { @class = "btn btn-primary" })
             </div>
         </div>
     </div>

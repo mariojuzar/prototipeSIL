@@ -1,1 +1,75 @@
-﻿
+﻿@{
+    AjaxOptions options = new AjaxOptions
+    {
+        HttpMethod = "post",
+        UpdateTargetId = "QuestionBox",
+        InsertionMode = InsertionMode.Replace
+    };
+}
+
+<div class="box-header well" data-original-title="">
+    <h2><i class="glyphicon glyphicon-question-sign"></i> Rekomendasi </h2>
+
+    <div class="box-icon">
+        <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+        <a href="#" class="btn btn-minimize btn-round btn-default">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+        <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+    </div>
+</div>
+<div class="box-content alert" style="padding:20px;">
+    
+    <div class="row" style="margin-left:-20px">
+        <div class="col-md-11">
+            <div class="alert alert-success">
+                <strong>Barang sebaiknya disuplai.</strong> 
+            </div>
+        </div>
+         <div class="col-md-1">  
+          @Ajax.ActionLink("Alasan", "ShowResultConsultationYes", null, options, htmlAttributes: new { @class = "btn btn-primary" }) 
+        </div> 
+    </div>
+    <strong>Alasan</strong><br />
+    Jika Menuju lebaran<br>
+    <span style="padding-left:2em">then tambah suplai bahan makanan pokok </span><br>
+    <span style="padding-left:3em">Padding of 3em</span><br>
+    <span style="padding-left:4em">Padding of 4em</span>
+</div>
+
+
+<div class="box-header well" data-original-title="">
+    <h2><i class="glyphicon glyphicon-question-sign"></i> Cek Barang yang Disuplai </h2>
+</div>
+<div class="box-content alert" style="padding:20px;">
+    <form role="form">
+        <div class="form-group">
+            <div class="row">
+                <label class="col-md-3"><b>Anggaran</b> </label>
+                <div class="col-md-6">
+                    <input type="number" class="form-control" id="anggaran">
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <label class="col-md-3"><b>Model Keputusan</b> </label>
+                <div class="col-md-6">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                            Pilih model keputusan
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Model EOQ</a></li>
+                            <li><a href="#">Model SMH</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">@Ajax.ActionLink("Submit", "ShowResultDSS", new { option = "EOQ" }, options, htmlAttributes: new { @class = "btn btn-default col-md-8" })</div>
+            </div>
+        </div>
+    </form>
+    <br />
+</div>

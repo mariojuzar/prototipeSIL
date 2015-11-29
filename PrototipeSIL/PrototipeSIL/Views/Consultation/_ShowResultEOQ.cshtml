@@ -1,1 +1,88 @@
-﻿
+﻿@model IEnumerable<PrototipeSIL.Models.RekomendasiSuplaiModel>
+
+@{
+    AjaxOptions options = new AjaxOptions
+    {
+        HttpMethod = "post",
+        UpdateTargetId = "QuestionBox",
+        InsertionMode = InsertionMode.Replace
+    };
+}
+
+<div class="box-header well" data-original-title="">
+    <h2><i class="glyphicon glyphicon-question-sign"></i> Cek Barang yang Disuplai </h2>
+</div>
+<div class="box-content alert" style="padding:20px;">
+    <form role="form">
+        <div class="form-group">
+            <div class="row">
+                <label class="col-md-3"><b>Anggaran</b> </label>
+                <div class="col-md-6">
+                    <input type="number" class="form-control" id="anggaran">
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <label class="col-md-3"><b>Model Keputusan</b> </label>
+                <div class="col-md-6">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                            Pilih model keputusan
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Model EOQ</a></li>
+                            <li><a href="#">Model SMH</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">@Ajax.ActionLink("Submit", "ShowResultConsultationYes", new { }, options, htmlAttributes: new { @class = "btn btn-default col-md-8" })</div>
+            </div>
+        </div>
+    </form>
+    <br />
+</div>
+
+<div class="box-header well" data-original-title="">
+    <h2><i class="glyphicon glyphicon-question-sign"></i> Rekomendasi </h2>
+
+    <div class="box-icon">
+        <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+        <a href="#" class="btn btn-minimize btn-round btn-default">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </a>
+        <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+    </div>
+</div>
+<div class="box-content" style="padding:20px;">
+    <table class="table table-striped tabl
+                       e-bordered bootstrap-datatable datatable responsive">
+        <thead>
+            <tr>
+                <th>Kode Barang</th>
+                <th>Nama Barang</th>
+                <th>Jumlah Pasok</th>
+                <th>Nama Supplier</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.KodeBarang</td>
+                    <td>@item.NamaBarang</td>
+                    <td>@item.JumlahPasok</td>
+                    <td>@item.NamaSupplier</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    
+</div>
+
+
+
