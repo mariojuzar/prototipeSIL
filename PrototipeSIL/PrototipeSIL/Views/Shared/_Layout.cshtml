@@ -53,6 +53,12 @@
                             <li class="@( ViewContext.RouteData.Values["controller"].ToString().Equals("Dashboard") ? "active" : "" )">
                                 <a class="ajax-link" href="~/Dashboard"><i class="glyphicon glyphicon-home"></i><span> Dashboard</span></a>
                             </li>
+                            <li class="@( ViewContext.RouteData.Values["controller"].ToString().Equals("Stock") ? "active" : "" )">
+                                <a class="ajax-link" href="~/Stock"><i class="glyphicon glyphicon-th-large"></i><span> Stok Barang</span></a>
+                            </li>
+                            <li class="@( ViewContext.RouteData.Values["controller"].ToString().Equals("Supplier") ? "active" : "" )">
+                                <a class="ajax-link" href="~/Supplier"><i class="glyphicon glyphicon-list-alt"></i><span> Supplier</span></a>
+                            </li>
                             <li class="@( ViewContext.RouteData.Values["controller"].ToString().Equals("Consultation") ? "active" : "" )">
                                 <a class="ajax-link" href="~/Consultation"><i class="glyphicon glyphicon-font"></i><span> Konsultasi</span></a>
                             </li>
@@ -60,19 +66,14 @@
                                 <a class="ajax-link" href="~/ModelManagement"><i class="glyphicon glyphicon-book"></i><span> Model Management</span></a>
                                 <ul class="nav nav-pills nav-stacked">
                                     <li class="@( ViewContext.RouteData.Values["controller"].ToString().Equals("Consultation") ? "active" : "")">
-                                        <a href="/ModelManagement">Model Saya</a>
+                                        <a href="/ModelManagement"><i class="glyphicon glyphicon-folder-open"></i><span> Model Saya</span></a>
                                     </li>
                                     <li class="@( (ViewContext.RouteData.Values["controller"].ToString().Equals("Consultation") && ViewContext.RouteData.Values["action"].ToString().Equals("Simulation")) ? "active" : "")">
-                                        <a href="/ModelManagement/Simulation">Simulasi</a>
+                                        <a href="/ModelManagement/Simulation"><i class="glyphicon glyphicon-share-alt"></i><span> Simulasi</span></a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="@( ViewContext.RouteData.Values["controller"].ToString().Equals("Stock") ? "active" : "" )">
-                                <a class="ajax-link" href="~/Stock"><i class="glyphicon glyphicon-th-large"></i><span> Stok Barang</span></a>
-                            </li>
-                            <li class="@( ViewContext.RouteData.Values["controller"].ToString().Equals("Supplier") ? "active" : "" )">
-                                <a class="ajax-link" href="~/Supplier"><i class="glyphicon glyphicon-list-alt"></i><span> Supplier</span></a>
-                            </li>
+                            
                         </ul>
                     </div>
                 </div>
