@@ -65,10 +65,10 @@
                             <li class="accordion @( ViewContext.RouteData.Values["controller"].ToString().Equals("ModelManagement") ? "active" : "" )">
                                 <a class="ajax-link" href="~/ModelManagement"><i class="glyphicon glyphicon-book"></i><span> Model Management</span></a>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li class="@( ViewContext.RouteData.Values["controller"].ToString().Equals("Consultation") ? "active" : "")">
+                                    <li class="@( (ViewContext.RouteData.Values["controller"].ToString().Equals("ModelManagement") && ViewContext.RouteData.Values["action"].ToString().Equals("Index")) ? "active" : "")">
                                         <a href="/ModelManagement"><i class="glyphicon glyphicon-folder-open"></i><span> Model Saya</span></a>
                                     </li>
-                                    <li class="@( (ViewContext.RouteData.Values["controller"].ToString().Equals("Consultation") && ViewContext.RouteData.Values["action"].ToString().Equals("Simulation")) ? "active" : "")">
+                                    <li class="@( (ViewContext.RouteData.Values["controller"].ToString().Equals("ModelManagement") && ViewContext.RouteData.Values["action"].ToString().Equals("Simulation")) ? "active" : "")">
                                         <a href="/ModelManagement/Simulation"><i class="glyphicon glyphicon-share-alt"></i><span> Simulasi</span></a>
                                     </li>
                                 </ul>
